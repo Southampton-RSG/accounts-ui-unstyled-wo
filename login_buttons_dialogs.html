@@ -123,15 +123,16 @@
           I'll do this later
         </div>
         <a class="accounts-close configure-login-service-dismiss-button">&times;</a>
-
-        <div class="login-button login-button-configure {{#if saveDisabled}}login-button-disabled{{/if}}"
-             id="configure-login-service-dialog-save-configuration">
-          Save Configuration
-        </div>
+        
         {{#if equals name "wooidc"}} 
            <div class="login-button login-button-configure {{#if saveDisabled}}login-button-disabled{{/if}}"
              id="configure-login-service-dialog-save-configuration">
-             Configure another WO node
+             Save and Configure another WO node
+           </div>
+        {{else}}
+           <div class="login-button login-button-configure {{#if saveDisabled}}login-button-disabled{{/if}}"
+             id="configure-login-service-dialog-save-configuration">
+             Save Configuration
            </div>
         {{/if}}
 

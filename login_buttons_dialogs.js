@@ -213,11 +213,17 @@ Template._configureLoginServiceDialog.events({
             Meteor._debug("Error configuring login service " + serviceName,
                           error);
           else
-            loginButtonsSession.set('configureLoginServiceDialogVisible',
+            if (serviceName == "wooidc"){
+              loginButtonsSession.set('configureLoginServiceDialogVisible',
+                                    true);
+            }
+            else
+              loginButtonsSession.set('configureLoginServiceDialogVisible',
                                     false);
         });
     }
   },
+  
   // IE8 doesn't support the 'input' event, so we'll run this on the keyup as
   // well. (Keeping the 'input' event means that this also fires when you use
   // the mouse to change the contents of the field, eg 'Cut' menu item.)
