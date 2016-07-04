@@ -216,6 +216,12 @@ Template._configureLoginServiceDialog.events({
             if (serviceName == "wooidc"){
               loginButtonsSession.set('configureLoginServiceDialogVisible',
                                     true);
+
+              //Reset the value of each field for configuring another Web observatory node.
+              _.each(configurationFields(), function(field) {
+                  configuration[field.property] = document.getElementById('configure-login-service-dialog-' + field.property);
+                  configuration[field.property].value = '';      
+              });
             }
             else
               loginButtonsSession.set('configureLoginServiceDialogVisible',
