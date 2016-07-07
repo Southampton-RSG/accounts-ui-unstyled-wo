@@ -177,6 +177,41 @@ Template._loginButtonsMessagesDialog.helpers({
   }
 });
 
+//
+// Configure Login service Meteor method
+//
+
+//if (Meteor.isServer){
+
+//Meteor.startup(function(){
+/*Meteor.methods ({
+        configureWooidcService: function (options) {
+             check(options, Match.ObjectIncluding({service: String}));*/
+               // Don't let random users configure a service we haven't added yet (so
+              // that when we do later add it, it's set up with their configuration
+             // instead of ours).
+            // XXX if service configuration is oauth-specific then this code should
+           //     be in accounts-oauth; if it's not then the registry should be
+           //     in this package
+          /*if (!(accounts.oauth
+                 && _.contains(accounts.oauth.serviceNames(), options.service))) {
+             throw new Meteor.Error(403, "Service unknown");
+          }
+
+         var ServiceConfiguration =
+         Package['service-configuration'].ServiceConfiguration;*/
+         //if (ServiceConfiguration.configurations.findOne({service: options.service}))
+         //       throw new Meteor.Error(403, "Service " + options.service + " already configured");
+
+         /*if (_.has(options, "secret") && usingOAuthEncryption())
+                options.secret = OAuthEncryption.seal(options.secret);
+
+         ServiceConfiguration.configurations.insert(options);
+
+      }
+});*/
+//});
+//}
 
 //
 // configureLoginServiceDialog template
@@ -200,40 +235,53 @@ Template._configureLoginServiceDialog.events({
         configuration[field.property] = document.getElementById(
           'configure-login-service-dialog-' + field.property).value
           .replace(/^\s*|\s*$/g, ""); // trim() doesnt work on IE8;
+        
+     
       });
 
       configuration.loginStyle =
         $('#configure-login-service-dialog input[name="loginStyle"]:checked')
         .val();
 
-      // Configure this login service
-      Accounts.connection.call(
-        "configureLoginService", configuration, function (error, result) {
+      // Configure this login service based on which service it is
+
+      if (serviceName == "wooidc")
+      {
+          Meteor.call("configureWooidcService", configuration, function (error, result) {
           if (error)
             Meteor._debug("Error configuring login service " + serviceName,
                           error);
-          else
-            if (serviceName == "wooidc"){
-              loginButtonsSession.set('configureLoginServiceDialogVisible',
+          else{
+            loginButtonsSession.set('configureLoginServiceDialogVisible',
                                     true);
 
-              //Reset the value of each field for configuring another Web observatory node.
-              _.each(configurationFields(), function(field) {
+            //Reset the value of each field for configuring another Web observatory node.
+            _.each(configurationFields(), function(field) {
                   configuration[field.property] = document.getElementById('configure-login-service-dialog-' + field.property);
-                  configuration[field.property].value = '';      
+                  configuration[field.property].value = '';
               });
-            }
-            else
+              }
+           });
+      }
+
+      else {
+
+           Accounts.connection.call("configureLoginService", configuration, function (error, result) {
+           if (error)
+              Meteor._debug("Error configuring login service " + serviceName,
+                          error);
+           else
               loginButtonsSession.set('configureLoginServiceDialogVisible',
                                     false);
         });
+      }
     }
   },
   
-  // IE8 doesn't support the 'input' event, so we'll run this on the keyup as
-  // well. (Keeping the 'input' event means that this also fires when you use
-  // the mouse to change the contents of the field, eg 'Cut' menu item.)
-  'input, keyup input': function (event) {
+    // IE8 doesn't support the 'input' event, so we'll run this on the keyup as
+    // well. (Keeping the 'input' event means that this also fires when you use
+    // the mouse to change the contents of the field, eg 'Cut' menu item.)
+   'input, keyup input': function (event) {
     // if the event fired on one of the configuration input fields,
     // check whether we should enable the 'save configuration' button
     if (event.target.id.indexOf('configure-login-service-dialog') === 0)

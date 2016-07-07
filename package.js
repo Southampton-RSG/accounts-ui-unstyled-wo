@@ -20,9 +20,11 @@ Package.onUse(function(api) {
   // Allow us to call Accounts.oauth.serviceNames, if there are any OAuth
   // services.
   api.use('accounts-oauth', {weak: true});
+  api.imply('accounts-password');
   // Allow us to directly test if accounts-password (which doesn't use
   // Accounts.oauth.registerService) exists.
   api.use('accounts-password', {weak: true});
+  api.imply('accounts-password');
 
   api.addFiles([
     'accounts_ui.js',
@@ -38,6 +40,9 @@ Package.onUse(function(api) {
     'login_buttons_single.js',
     'login_buttons_dropdown.js',
     'login_buttons_dialogs.js'], 'client');
+
+  //wooidc_methods file consists of method for multiple times configuration for WOOIDC OAuth service (e.g. configuring active web observatory nodes using same service). This is a meteor server side code.
+  api.addFiles(['wooidc_methods.js'], 'server');
 
   // The less source defining the default style for accounts-ui. Just adding
   // this package doesn't actually apply these styles; they need to be
