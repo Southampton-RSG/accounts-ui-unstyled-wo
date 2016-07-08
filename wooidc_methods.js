@@ -23,8 +23,7 @@ Meteor.methods ({
          if (_.has(options, "secret") && usingOAuthEncryption())
                 options.secret = OAuthEncryption.seal(options.secret);
 
-         ServiceConfiguration.configurations.upsert({service: "wooidc"}, {domain: options.domain, clientId: options.clientId, secret: options.clientSecret});
-
+         ServiceConfiguration.configurations.upsert({service: "wooidc"}, {$push: {config: {domain: options.domain, clientId: options.clientId, secret: options.clientSecret}}});
       }
 });
 
