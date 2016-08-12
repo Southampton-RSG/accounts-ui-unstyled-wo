@@ -247,10 +247,12 @@ Template._configureLoginServiceDialog.events({
 
       if (serviceName == "wooidc")
       {
+          console.log("Service Wooidc configuration clicked.");
           Meteor.call("configureWooidcService", configuration, function (error, result) {
-          if (error)
+          if (error){
+            console.log("Error configuring service " + serviceName);
             Meteor._debug("Error configuring login service " + serviceName,
-                          error);
+                          error);}
           else{
             loginButtonsSession.set('configureLoginServiceDialogVisible',
                                     true);
