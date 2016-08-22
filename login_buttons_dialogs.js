@@ -28,7 +28,7 @@ Accounts.onEmailVerificationLink(function (token, done) {
 
 
 //
-// resetPasswordDialog template
+// woresetPasswordDialog template
 //
 
 //Global helper to be used to compare OpenID connect providers so as to render the configuration template accordingly.
@@ -37,7 +37,7 @@ Template.registerHelper('equals', function(a, b) {
    return a === b;
 });
 
-Template._resetPasswordDialog.events({
+Template._woresetPasswordDialog.events({
   'click #login-buttons-reset-password-button': function () {
     resetPassword();
   },
@@ -72,23 +72,23 @@ var resetPassword = function () {
     });
 };
 
-Template._resetPasswordDialog.helpers({
+Template._woresetPasswordDialog.helpers({
   inResetPasswordFlow: function () {
     return loginButtonsSession.get('resetPasswordToken');
   }
 });
 
 //
-// justResetPasswordDialog template
+// wojustResetPasswordDialog template
 //
 
-Template._justResetPasswordDialog.events({
+Template._wojustResetPasswordDialog.events({
   'click #just-verified-dismiss-button': function () {
     loginButtonsSession.set('justResetPassword', false);
   }
 });
 
-Template._justResetPasswordDialog.helpers({
+Template._wojustResetPasswordDialog.helpers({
   visible: function () {
     return loginButtonsSession.get('justResetPassword');
   },
@@ -98,10 +98,10 @@ Template._justResetPasswordDialog.helpers({
 
 
 //
-// enrollAccountDialog template
+// woenrollAccountDialog template
 //
 
-Template._enrollAccountDialog.events({
+Template._woenrollAccountDialog.events({
   'click #login-buttons-enroll-account-button': function () {
     enrollAccount();
   },
@@ -135,7 +135,7 @@ var enrollAccount = function () {
     });
 };
 
-Template._enrollAccountDialog.helpers({
+Template._woenrollAccountDialog.helpers({
   inEnrollAccountFlow: function () {
     return loginButtonsSession.get('enrollAccountToken');
   }
@@ -143,16 +143,16 @@ Template._enrollAccountDialog.helpers({
 
 
 //
-// justVerifiedEmailDialog template
+// wojustVerifiedEmailDialog template
 //
 
-Template._justVerifiedEmailDialog.events({
+Template._wojustVerifiedEmailDialog.events({
   'click #just-verified-dismiss-button': function () {
     loginButtonsSession.set('justVerifiedEmail', false);
   }
 });
 
-Template._justVerifiedEmailDialog.helpers({
+Template._wojustVerifiedEmailDialog.helpers({
   visible: function () {
     return loginButtonsSession.get('justVerifiedEmail');
   },
@@ -161,16 +161,16 @@ Template._justVerifiedEmailDialog.helpers({
 
 
 //
-// loginButtonsMessagesDialog template
+// loginButtonsWoMessagesDialog template
 //
 
-Template._loginButtonsMessagesDialog.events({
+Template._loginButtonsWoMessagesDialog.events({
   'click #messages-dialog-dismiss-button': function () {
     loginButtonsSession.resetMessages();
   }
 });
 
-Template._loginButtonsMessagesDialog.helpers({
+Template._loginButtonsWoMessagesDialog.helpers({
   visible: function () {
     var hasMessage = loginButtonsSession.get('infoMessage') || loginButtonsSession.get('errorMessage');
     return !dropdown() && hasMessage;
@@ -214,10 +214,10 @@ Template._loginButtonsMessagesDialog.helpers({
 //}
 
 //
-// configureLoginServiceDialog template
+// woconfigureLoginServiceDialog template
 //
 
-Template._configureLoginServiceDialog.events({
+Template._woconfigureLoginServiceDialog.events({
   'click .configure-login-service-dismiss-button': function () {
     loginButtonsSession.set('configureLoginServiceDialogVisible', false);
   },
@@ -320,7 +320,7 @@ var configurationFields = function () {
   return template.fields();
 };
 
-Template._configureLoginServiceDialog.helpers({
+Template._woconfigureLoginServiceDialog.helpers({
   configurationFields: function () {
     return configurationFields();
   },
@@ -345,13 +345,13 @@ var capitalize = function(str){
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-Template._configureLoginOnDesktopDialog.helpers({
+Template._woconfigureLoginOnDesktopDialog.helpers({
   visible: function () {
     return loginButtonsSession.get('configureOnDesktopVisible');
   }
 });
 
-Template._configureLoginOnDesktopDialog.events({
+Template._woconfigureLoginOnDesktopDialog.events({
   'click #configure-on-desktop-dismiss-button': function () {
     loginButtonsSession.set('configureOnDesktopVisible', false);
   }

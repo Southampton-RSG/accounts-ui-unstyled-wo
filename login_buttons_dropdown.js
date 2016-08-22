@@ -3,7 +3,7 @@ var loginButtonsSession = Accounts._loginButtonsSession;
 
 // events shared between loginButtonsLoggedOutDropdown and
 // loginButtonsLoggedInDropdown
-Template.loginButtons.events({
+Template.loginButtonsWo.events({
   'click #login-name-link, click #login-sign-in-link': function () {
     loginButtonsSession.set('dropdownVisible', true);
   },
@@ -14,17 +14,17 @@ Template.loginButtons.events({
 
 
 //
-// loginButtonsLoggedInDropdown template and related
+// loginButtonsWoLoggedInDropdown template and related
 //
 
-Template._loginButtonsLoggedInDropdown.events({
+Template._loginButtonsWoLoggedInDropdown.events({
   'click #login-buttons-open-change-password': function() {
     loginButtonsSession.resetMessages();
     loginButtonsSession.set('inChangePasswordFlow', true);
   }
 });
 
-Template._loginButtonsLoggedInDropdown.helpers({
+Template._loginButtonsWoLoggedInDropdown.helpers({
   displayName: displayName,
 
   inChangePasswordFlow: function () {
@@ -40,7 +40,7 @@ Template._loginButtonsLoggedInDropdown.helpers({
   }
 });
 
-Template._loginButtonsLoggedInDropdownActions.helpers({
+Template._loginButtonsWoLoggedInDropdownActions.helpers({
   allowChangingPassword: function () {
     // it would be more correct to check whether the user has a password set,
     // but in order to do that we'd have to send more data down to the client,
@@ -54,10 +54,10 @@ Template._loginButtonsLoggedInDropdownActions.helpers({
 
 
 //
-// loginButtonsLoggedOutDropdown template and related
+// loginButtonsWoLoggedOutDropdown template and related
 //
 
-Template._loginButtonsLoggedOutDropdown.events({
+Template._loginButtonsWoLoggedOutDropdown.events({
   'click #login-buttons-password': function () {
     loginOrSignup();
   },
@@ -168,7 +168,7 @@ Template._loginButtonsLoggedOutDropdown.events({
   }
 });
 
-Template._loginButtonsLoggedOutDropdown.helpers({
+Template._loginButtonsWoLoggedOutDropdown.helpers({
   // additional classes that can be helpful in styling the dropdown
   additionalClasses: function () {
     if (!hasPasswordService()) {
@@ -192,7 +192,7 @@ Template._loginButtonsLoggedOutDropdown.helpers({
 });
 
 // return all login services, with password last
-Template._loginButtonsLoggedOutAllServices.helpers({
+Template._loginButtonsWoLoggedOutAllServices.helpers({
   services: getLoginServices,
 
   isPasswordService: function () {
@@ -206,7 +206,7 @@ Template._loginButtonsLoggedOutAllServices.helpers({
   hasPasswordService: hasPasswordService
 });
 
-Template._loginButtonsLoggedOutPasswordService.helpers({
+Template._loginButtonsWoLoggedOutPasswordService.helpers({
   fields: function () {
     var loginFields = [
       {fieldName: 'username-or-email', fieldLabel: 'Username or Email',
@@ -288,7 +288,7 @@ Template._loginButtonsLoggedOutPasswordService.helpers({
   }
 });
 
-Template._loginButtonsFormField.helpers({
+Template._loginButtonsWoFormField.helpers({
   inputType: function () {
     return this.inputType || "text";
   }
@@ -296,10 +296,10 @@ Template._loginButtonsFormField.helpers({
 
 
 //
-// loginButtonsChangePassword template
+// loginButtonsWoChangePassword template
 //
 
-Template._loginButtonsChangePassword.events({
+Template._loginButtonsWoChangePassword.events({
   'keypress #login-old-password, keypress #login-password, keypress #login-password-again': function (event) {
     if (event.keyCode === 13)
       changePassword();
@@ -309,7 +309,7 @@ Template._loginButtonsChangePassword.events({
   }
 });
 
-Template._loginButtonsChangePassword.helpers({
+Template._loginButtonsWoChangePassword.helpers({
   fields: function () {
     return [
       {fieldName: 'old-password', fieldLabel: 'Current Password', inputType: 'password',

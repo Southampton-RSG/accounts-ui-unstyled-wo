@@ -27,7 +27,7 @@ var validateKey = function (key) {
     throw new Error("Invalid key in loginButtonsSession: " + key);
 };
 
-var KEY_PREFIX = "Meteor.loginButtons.";
+var KEY_PREFIX = "Meteor.loginButtonsWo.";
 
 // XXX This should probably be package scope rather than exported
 // (there was even a comment to that effect here from before we had

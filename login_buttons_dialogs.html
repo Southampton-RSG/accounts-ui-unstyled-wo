@@ -1,16 +1,16 @@
 <body>
-  {{> _resetPasswordDialog}}
-  {{> _justResetPasswordDialog}}
-  {{> _enrollAccountDialog}}
-  {{> _justVerifiedEmailDialog}}
-  {{> _configureLoginServiceDialog}}
-  {{> _configureLoginOnDesktopDialog}}
+  {{> _woresetPasswordDialog}}
+  {{> _wojustResetPasswordDialog}}
+  {{> _woenrollAccountDialog}}
+  {{> _wojustVerifiedEmailDialog}}
+  {{> _woconfigureLoginServiceDialog}}
+  {{> _woconfigureLoginOnDesktopDialog}}
 
   {{! if we're not showing a dropdown, we need some other place to show messages }}
-  {{> _loginButtonsMessagesDialog}}
+  {{> _loginButtonsWoMessagesDialog}}
 </body>
 
-<template name="_resetPasswordDialog">
+<template name="_woresetPasswordDialog">
   {{#if inResetPasswordFlow}}
     <div class="hide-background"></div>
 
@@ -23,7 +23,7 @@
         <input id="reset-password-new-password" type="password" />
       </div>
 
-      {{> _loginButtonsMessages}}
+      {{> _loginButtonsWoMessages}}
 
       <div class="login-button login-button-form-submit" id="login-buttons-reset-password-button">
         Set password
@@ -34,7 +34,7 @@
   {{/if}}
 </template>
 
-<template name="_justResetPasswordDialog">
+<template name="_wojustResetPasswordDialog">
   {{#if visible}}
     <div class="accounts-dialog accounts-centered-dialog">
       Password reset.
@@ -44,7 +44,7 @@
   {{/if}}
 </template>
 
-<template name="_enrollAccountDialog">
+<template name="_woenrollAccountDialog">
   {{#if inEnrollAccountFlow}}
     <div class="hide-background"></div>
 
@@ -57,7 +57,7 @@
         <input id="enroll-account-password" type="password" />
       </div>
 
-      {{> _loginButtonsMessages}}
+      {{> _loginButtonsWoMessages}}
 
       <div class="login-button login-button-form-submit" id="login-buttons-enroll-account-button">
         Create account
@@ -68,7 +68,7 @@
   {{/if}}
 </template>
 
-<template name="_justVerifiedEmailDialog">
+<template name="_wojustVerifiedEmailDialog">
   {{#if visible}}
     <div class="accounts-dialog accounts-centered-dialog">
       Email verified.
@@ -78,7 +78,7 @@
   {{/if}}
 </template>
 
-<template name="_configureLoginServiceDialog">
+<template name="_woconfigureLoginServiceDialog">
   {{#if visible}}
     <div id="configure-login-service-dialog" class="accounts-dialog accounts-centered-dialog">
       {{> configurationSteps}}
@@ -141,16 +141,16 @@
   {{/if}}
 </template>
 
-<template name="_loginButtonsMessagesDialog">
+<template name="_loginButtonsWoMessagesDialog">
   {{#if visible}}
     <div class="accounts-dialog accounts-centered-dialog" id="login-buttons-message-dialog">
-      {{> _loginButtonsMessages}}
+      {{> _loginButtonsWoMessages}}
       <div class="login-button" id="messages-dialog-dismiss-button">Dismiss</div>
     </div>
   {{/if}}
 </template>
 
-<template name="_configureLoginOnDesktopDialog">
+<template name="_woconfigureLoginOnDesktopDialog">
   {{#if visible}}
     <div class="accounts-dialog accounts-centered-dialog" id="configure-on-desktop-dialog">
       <p>

@@ -2,7 +2,7 @@
 var loginButtonsSession = Accounts._loginButtonsSession;
 
 // shared between dropdown and single mode
-Template.loginButtons.events({
+Template.loginButtonsWo.events({
   'click #login-buttons-logout': function() {
     Meteor.logout(function () {
       loginButtonsSession.closeDropdown();
@@ -10,8 +10,8 @@ Template.loginButtons.events({
   }
 });
 
-Template.registerHelper('loginButtons', function () {
-  throw new Error("Use {{> loginButtons}} instead of {{loginButtons}}");
+Template.registerHelper('loginButtonsWo', function () {
+  throw new Error("Use {{> loginButtonsWo}} instead of {{loginButtonsWo}}");
 });
 
 //
@@ -104,10 +104,10 @@ validatePassword = function (password) {
 };
 
 //
-// loginButtonLoggedOut template
+// loginButtonWoLoggedOut template
 //
 
-Template._loginButtonsLoggedOut.helpers({
+Template._loginButtonsWoLoggedOut.helpers({
   dropdown: dropdown,
   services: getLoginServices,
   singleService: function () {
@@ -124,12 +124,12 @@ Template._loginButtonsLoggedOut.helpers({
 
 
 //
-// loginButtonsLoggedIn template
+// loginButtonsWoLoggedIn template
 //
 
   // decide whether we should show a dropdown rather than a row of
   // buttons
-Template._loginButtonsLoggedIn.helpers({
+Template._loginButtonsWoLoggedIn.helpers({
   dropdown: dropdown
 });
 
@@ -139,23 +139,23 @@ Template._loginButtonsLoggedIn.helpers({
 // loginButtonsLoggedInSingleLogoutButton template
 //
 
-Template._loginButtonsLoggedInSingleLogoutButton.helpers({
+Template._loginButtonsWoLoggedInSingleLogoutButton.helpers({
   displayName: displayName
 });
 
 
 
 //
-// loginButtonsMessage template
+// loginButtonsWoMessage template
 //
 
-Template._loginButtonsMessages.helpers({
+Template._loginButtonsWoMessages.helpers({
   errorMessage: function () {
     return loginButtonsSession.get('errorMessage');
   }
 });
 
-Template._loginButtonsMessages.helpers({
+Template._loginButtonsWoMessages.helpers({
   infoMessage: function () {
     return loginButtonsSession.get('infoMessage');
   }
@@ -163,9 +163,9 @@ Template._loginButtonsMessages.helpers({
 
 
 //
-// loginButtonsLoggingInPadding template
+// loginButtonsWoLoggingInPadding template
 //
 
-Template._loginButtonsLoggingInPadding.helpers({
+Template._loginButtonsWoLoggingInPadding.helpers({
   dropdown: dropdown
 });

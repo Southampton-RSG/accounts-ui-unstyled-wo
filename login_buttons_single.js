@@ -27,11 +27,11 @@ Accounts.onPageLoadLogin(function (attemptInfo) {
     loginResultCallback(attemptInfo.type, attemptInfo.error);
 });
 
-Template._loginButtonsLoggedOutSingleLoginButton.rendered = function(){
+Template._loginButtonsWoLoggedOutSingleLoginButton.rendered = function(){
  Accounts._loginButtonsSession.set('dropdownVisible', true);
 };
 
-Template._loginButtonsLoggedOutSingleLoginButton.events({
+Template._loginButtonsWoLoggedOutSingleLoginButton.events({
   'click .login-button': function () {
     var serviceName = this.name;
     loginButtonsSession.resetMessages();
@@ -57,7 +57,7 @@ Template._loginButtonsLoggedOutSingleLoginButton.events({
   }
 });
 
-Template._loginButtonsLoggedOutSingleLoginButton.helpers({
+Template._loginButtonsWoLoggedOutSingleLoginButton.helpers({
   configured: function () {
     return !!ServiceConfiguration.configurations.findOne({service: this.name});
   },

@@ -1,4 +1,4 @@
-<template name="loginButtons">
+<template name="loginButtonsWo">
   <div id="login-buttons" class="login-buttons-dropdown-align-{{align}}">
     {{#if currentUser}}
       {{#if loggingIn}}
@@ -7,43 +7,43 @@
             state so other UIs can treat it specially, but we'll just treat it
             as logged out. }}
         {{#if dropdown}}
-          {{> _loginButtonsLoggingIn }}
+          {{> _loginButtonsWoLoggingIn }}
         {{else}}
           <div class="login-buttons-with-only-one-button">
-            {{> _loginButtonsLoggingInSingleLoginButton }}
+            {{> _loginButtonsWoLoggingInSingleLoginButton }}
           </div>
         {{/if}}
       {{else}}
-        {{> _loginButtonsLoggedIn}}
+        {{> _loginButtonsWoLoggedIn}}
       {{/if}}
     {{else}}
-      {{> _loginButtonsLoggedOut}}
+      {{> _loginButtonsWoLoggedOut}}
     {{/if}}
   </div>
 </template>
 
-<template name="_loginButtonsLoggedIn">
+<template name="_loginButtonsWoLoggedIn">
   {{#if dropdown}}
-    {{> _loginButtonsLoggedInDropdown}}
+    {{> _loginButtonsWoLoggedInDropdown}}
   {{else}}
     <div class="login-buttons-with-only-one-button">
-      {{> _loginButtonsLoggedInSingleLogoutButton}}
+      {{> _loginButtonsWoLoggedInSingleLogoutButton}}
     </div>
   {{/if}}
 </template>
 
-<template name="_loginButtonsLoggedOut">
+<template name="_loginButtonsWoLoggedOut">
   {{#if services}} {{! if at least one service is configured }}
     {{#if configurationLoaded}}
       {{#if dropdown}} {{! if more than one service configured, or password is configured}}
-        {{> _loginButtonsLoggedOutDropdown}}
+        {{> _loginButtonsWoLoggedOutDropdown}}
       {{else}}
         {{#with singleService}} {{! at this point there must be only one configured services }}
           <div class="login-buttons-with-only-one-button">
             {{#if loggingIn}}
-              {{> _loginButtonsLoggingInSingleLoginButton}}
+              {{> _loginButtonsWoLoggingInSingleLoginButton}}
             {{else}}
-              {{> _loginButtonsLoggedOutSingleLoginButton}}
+              {{> _loginButtonsWoLoggedOutSingleLoginButton}}
             {{/if}}
           </div>
         {{/with}}
@@ -55,7 +55,7 @@
 </template>
 
 <!-- used in various places to display messages to user -->
-<template name="_loginButtonsMessages">
+<template name="_loginButtonsWoMessages">
   {{#if errorMessage}}
     <div class="message error-message">{{errorMessage}}</div>
   {{/if}}
@@ -64,13 +64,13 @@
   {{/if}}
 </template>
 
-<template name="_loginButtonsLoggingIn">
-  {{> _loginButtonsLoggingInPadding}}
+<template name="_loginButtonsWoLoggingIn">
+  {{> _loginButtonsWoLoggingInPadding}}
   <div class="loading">&nbsp;</div>
-  {{> _loginButtonsLoggingInPadding}}
+  {{> _loginButtonsWoLoggingInPadding}}
 </template>
 
-<template name="_loginButtonsLoggingInPadding">
+<template name="_loginButtonsWoLoggingInPadding">
   {{#unless dropdown}}
     {{! invisible div used for correct height of surrounding div. this ensures
         that the _loginButtons template is always the same height
